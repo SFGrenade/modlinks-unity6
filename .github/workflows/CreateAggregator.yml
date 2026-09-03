@@ -24,6 +24,7 @@ jobs:
           tar -xf dhall-toml-*-x86_64-linux.tar.bz2
           tar -xf dhall-yaml-*-x86_64-linux.tar.bz2
         shell: bash
+
       - name: Setup Aggregator
         run: |
           echo "let Prelude = https://prelude.dhall-lang.org/package.dhall" >ModLinks.dhall
@@ -34,7 +35,21 @@ jobs:
           echo "]" >>ModLinks.dhall
           cat ModLinks.dhall
         shell: bash
+
       - name: Make it JSON
         run: |
-          bin/dhall-to-json --file ModLinks.dhall
+          bin/dhall-to-json --file ModLinks.dhall --output ModLinks.json
+          bin/dhall-to-toml --file ModLinks.dhall --output ModLinks.toml
+          bin/dhall-to-yaml-ng --file ModLinks.dhall --output ModLinks.yaml
         shell: bash
+
+      - name: Release the files
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: latest
+          target_commitish: ${{ github.sha }}
+          make_latest: true
+          files: |
+            ModLinks.json
+            ModLinks.toml
+            ModLinks.yaml
