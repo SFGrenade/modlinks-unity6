@@ -1,5 +1,8 @@
 name: Create-Aggregator
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ main ]
@@ -18,10 +21,8 @@ jobs:
       - name: Setup dhall
         run: |
           wget https://github.com/dhall-lang/dhall-haskell/releases/download/1.42.2/dhall-json-1.7.12-x86_64-linux.tar.bz2
-          wget https://github.com/dhall-lang/dhall-haskell/releases/download/1.42.2/dhall-toml-1.0.4-x86_64-linux.tar.bz2
           wget https://github.com/dhall-lang/dhall-haskell/releases/download/1.42.2/dhall-yaml-1.2.12-x86_64-linux.tar.bz2
           tar -xf dhall-json-*-x86_64-linux.tar.bz2
-          tar -xf dhall-toml-*-x86_64-linux.tar.bz2
           tar -xf dhall-yaml-*-x86_64-linux.tar.bz2
         shell: bash
 
@@ -39,7 +40,6 @@ jobs:
       - name: Make it JSON
         run: |
           bin/dhall-to-json --file ModLinks.dhall --output ModLinks.json
-          bin/dhall-to-toml --file ModLinks.dhall --output ModLinks.toml
           bin/dhall-to-yaml-ng --file ModLinks.dhall --output ModLinks.yaml
         shell: bash
 
@@ -51,5 +51,4 @@ jobs:
           make_latest: true
           files: |
             ModLinks.json
-            ModLinks.toml
             ModLinks.yaml
