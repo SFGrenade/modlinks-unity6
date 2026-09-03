@@ -1,0 +1,38 @@
+name: Create-Aggregator
+
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+  workflow_call:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup dhall
+        run: |
+          wget https://github.com/dhall-lang/dhall-haskell/releases/download/1.42.2/dhall-json-1.7.12-x86_64-linux.tar.bz2
+          wget https://github.com/dhall-lang/dhall-haskell/releases/download/1.42.2/dhall-toml-1.0.4-x86_64-linux.tar.bz2
+          wget https://github.com/dhall-lang/dhall-haskell/releases/download/1.42.2/dhall-yaml-1.2.12-x86_64-linux.tar.bz2
+          tar -xf dhall-*-x86_64-linux.tar.bz2
+        shell: bash
+      - name: Setup Aggregator
+        run: |
+          echo "let Prelude = https://prelude.dhall-lang.org/package.dhall" >modlinks.dhall
+          echo "" >modlinks.dhall
+          echo "in  [" >modlinks.dhall
+          echo "" >modlinks.dhall
+          find ./src -name "*.dhall" -type f | sed 's/^/  /;s/$/,/' >> modlinks.dhall
+          echo "]" >modlinks.dhall
+          cat modlinks.dhall
+        shell: bash
+      - name: Make it JSON
+        run: |
+          dhall-to-json --file modlinks.dhall
+        shell: bash
