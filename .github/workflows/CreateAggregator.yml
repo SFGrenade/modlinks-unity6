@@ -26,15 +26,15 @@ jobs:
         shell: bash
       - name: Setup Aggregator
         run: |
-          echo "let Prelude = https://prelude.dhall-lang.org/package.dhall" >modlinks.dhall
-          echo "" >>modlinks.dhall
-          echo "in  [" >>modlinks.dhall
-          echo "" >>modlinks.dhall
-          find ./Mods -name "*.dhall" -type f | sed 's/^/  /;s/$/,/' >> modlinks.dhall
-          echo "]" >>modlinks.dhall
-          cat modlinks.dhall
+          echo "let Prelude = https://prelude.dhall-lang.org/package.dhall" >ModLinks.dhall
+          echo "" >>ModLinks.dhall
+          echo "in  [" >>ModLinks.dhall
+          echo "" >>ModLinks.dhall
+          find ./Mods -name "*.dhall" -type f | sed 's/^/  /;s/$/,/' >> ModLinks.dhall
+          echo "]" >>ModLinks.dhall
+          cat ModLinks.dhall
         shell: bash
       - name: Make it JSON
         run: |
-          bin/dhall-to-json --file modlinks.dhall
+          bin/dhall-to-json --file ModLinks.dhall
         shell: bash
