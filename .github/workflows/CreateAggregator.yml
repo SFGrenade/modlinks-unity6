@@ -30,7 +30,7 @@ jobs:
           echo "" >>modlinks.dhall
           echo "in  [" >>modlinks.dhall
           echo "" >>modlinks.dhall
-          find ./src -name "*.dhall" -type f | sed 's/^/  /;s/$/,/' >> modlinks.dhall
+          find ./Mods -name "*.dhall" -type f | sed 's/^/  /;s/$/,/' >> modlinks.dhall
           echo "]" >>modlinks.dhall
           cat modlinks.dhall
         shell: bash

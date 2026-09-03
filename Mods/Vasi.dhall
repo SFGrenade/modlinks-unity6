@@ -1,10 +1,10 @@
 let Prelude = https://prelude.dhall-lang.org/package.dhall
 
-let Manifest = ../types/Manifest.dhall
+let Manifest = ../Types/Manifest.dhall
 
-let System = ../types/System.dhall
+let System = ../Types/System.dhall
 
-let Tag = ../types/Tag.dhall
+let Tag = ../Types/Tag.dhall
 
 in  Manifest::{
     , Name = "Vasi"
