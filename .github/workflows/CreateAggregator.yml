@@ -36,5 +36,5 @@ jobs:
         shell: bash
       - name: Make it JSON
         run: |
-          dhall-to-json --file modlinks.dhall
+          bin/dhall-to-json --file modlinks.dhall
         shell: bash
