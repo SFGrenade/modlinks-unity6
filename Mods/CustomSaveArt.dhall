@@ -1,10 +1,8 @@
-let Prelude = https://prelude.dhall-lang.org/package.dhall
+let Manifest = ../Types/Manifest.dhall
 
-let Manifest = ../../Types/Manifest.dhall
+let System = ../Types/System.dhall
 
-let System = ../../Types/System.dhall
-
-let Tag = ../../Types/Tag.dhall
+let Tag = ../Types/Tag.dhall
 
 in  Manifest::{
     , Name = "CustomSaveArt"
