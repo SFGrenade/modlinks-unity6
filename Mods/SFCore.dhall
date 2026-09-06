@@ -1,18 +1,12 @@
-let Prelude = https://prelude.dhall-lang.org/package.dhall
+let Types = ../Types.dhall
 
-let Manifest = ../Types/Manifest.dhall
-
-let System = ../Types/System.dhall
-
-let Tag = ../Types/Tag.dhall
-
-in  Manifest::{
+in  Types.Manifest::{
     , Name = "SFCore"
     , DisplayName = Some "SFCore"
     , Description = "Library mod used by other mods."
     , Version = "1.5.16.2"
     , PlatformLinks =
-      [ { Platform = System.Universal
+      [ { Platform = Types.System.Universal
         , Url =
             "https://github.com/SFGrenade/SFCore/releases/download/v1.5.16.2/SFCore.zip"
         , Sha256 =
@@ -24,6 +18,6 @@ in  Manifest::{
         "https://github.com/SFGrenade/SFCore/raw/refs/heads/master/README.md"
     , Issues = Some "https://github.com/SFGrenade/SFCore/issues/"
     , Dependencies = Some [ (./WavLib.dhall).Name ]
-    , Tags = [ Tag.Library ]
+    , Tags = [ Types.Tag.Library ]
     , Authors = [ "SFGrenade", "Clazex", "Dandy", "dplochcoder" ]
     }

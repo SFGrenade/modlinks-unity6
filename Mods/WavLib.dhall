@@ -1,18 +1,12 @@
-let Prelude = https://prelude.dhall-lang.org/package.dhall
+let Types = ../Types.dhall
 
-let Manifest = ../Types/Manifest.dhall
-
-let System = ../Types/System.dhall
-
-let Tag = ../Types/Tag.dhall
-
-in  Manifest::{
+in  Types.Manifest::{
     , Name = "WavLib"
     , DisplayName = Some "WavLib"
     , Description = "A library to read and write WAV files."
     , Version = "1.1.9.0"
     , PlatformLinks =
-      [ { Platform = System.Universal
+      [ { Platform = Types.System.Universal
         , Url =
             "https://github.com/SFGrenade/WavLib/releases/download/v1.1.9/WavLib.zip"
         , Sha256 =
@@ -23,6 +17,6 @@ in  Manifest::{
     , ReadMe = Some
         "https://github.com/SFGrenade/WavLib/raw/refs/heads/master/README.md"
     , Issues = Some "https://github.com/SFGrenade/WavLib/issues/"
-    , Tags = [ Tag.Library ]
+    , Tags = [ Types.Tag.Library ]
     , Authors = [ "SFGrenade" ]
     }

@@ -1,16 +1,12 @@
-let Manifest = ../Types/Manifest.dhall
+let Types = ../Types.dhall
 
-let System = ../Types/System.dhall
-
-let Tag = ../Types/Tag.dhall
-
-in  Manifest::{
+in  Types.Manifest::{
     , Name = "CustomSaveArt"
     , DisplayName = Some "Custom Save Art"
     , Description = "Makes white palace save art funny. Literally nothing else."
     , Version = "1.5.0.1"
     , PlatformLinks =
-      [ { Platform = System.Universal
+      [ { Platform = Types.System.Universal
         , Url =
             "https://github.com/SFGrenade/CustomSaveArt/releases/download/v1.5.0.1/CustomSaveArt.zip"
         , Sha256 =
@@ -21,6 +17,6 @@ in  Manifest::{
     , ReadMe = Some
         "https://github.com/SFGrenade/CustomSaveArt/raw/refs/heads/master/README.md"
     , Issues = Some "https://github.com/SFGrenade/CustomSaveArt/issues/"
-    , Tags = [ Tag.Cosmetic ]
+    , Tags = [ Types.Tag.Cosmetic ]
     , Authors = [ "SFGrenade" ]
     }

@@ -1,18 +1,12 @@
-let Prelude = https://prelude.dhall-lang.org/package.dhall
+let Types = ../Types.dhall
 
-let Manifest = ../Types/Manifest.dhall
-
-let System = ../Types/System.dhall
-
-let Tag = ../Types/Tag.dhall
-
-in  Manifest::{
+in  Types.Manifest::{
     , Name = "Vasi"
     , DisplayName = Some "Vasi"
     , Description = "A library with some utility classes."
     , Version = "2.0.0.0"
     , PlatformLinks =
-      [ { Platform = System.Universal
+      [ { Platform = Types.System.Universal
         , Url =
             "https://github.com/fifty-six/HollowKnight.Vasi/releases/download/v2/Vasi.zip"
         , Sha256 =
@@ -23,6 +17,6 @@ in  Manifest::{
     , ReadMe = Some
         "https://github.com/fifty-six/HollowKnight.Vasi/raw/refs/heads/master/README.md"
     , Issues = Some "https://github.com/fifty-six/HollowKnight.Vasi/issues/"
-    , Tags = [ Tag.Library ]
+    , Tags = [ Types.Tag.Library ]
     , Authors = [ "56" ]
     }
